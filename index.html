@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Big Games API Hub</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        body { background-color: #fffbcc; color: #333; }
+        header { text-align: center; background: linear-gradient(45deg, #ff6b6b, #ffa502); padding: 1rem; color: white; border-radius: 10px; }
+        .grid { margin-top: 20px; }
+        .card { padding: 1rem; border-radius: 10px; background-color: white; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Big Games API Hub</h1>
+        <p>Explore collections, clans, and stats from the Big Games universe!</p>
+    </header>
+    <main class="container">
+        <div class="grid">
+            <section>
+                <h2>Game Collections</h2>
+                <div id="collections-container">Loading...</div>
+            </section>
+            <section>
+                <h2>Clans & Leaderboards</h2>
+                <div id="clans-container">Loading...</div>
+            </section>
+            <section>
+                <h2>Player Stats & Value</h2>
+                <div id="stats-container">Loading...</div>
+            </section>
+        </div>
+    </main>
+    <script>
+        async function fetchData(endpoint) {
+            const url = `/api/${encodeURIComponent(endpoint)}`;
+            try {
+                const response = await fetch(url);
+                return await response.json();
+            } catch (error) {
+                console.error("API Error:", error);
+                return null;
+            }
+        }
+    </script>
+</body>
+</html>
